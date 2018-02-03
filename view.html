@@ -18,23 +18,56 @@
         <button type="button" class="btn btn-primary btn-lg">View Reservations</button>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default text-left">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Current Reservations</strong></h3>
           </div>
           <div class="panel-body">
-
+            <div id="reservations"></div>
           </div>
 
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default text-left">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Waiting List</strong></h3>
           </div>
           <div class="panel-body">
+            <div id="waitlist"></div>
           </div>
-          
         </div>
+
+<script type="text/javascript">
+  $.get("/api/reservations", function(data) {
+    console.log(data);
+    if (data) {
+        for (var i = 0; i < data.length; i++) {
+          var a = $("<div>");
+          a.addClass("uniqueID");
+          a.attr("data-name", data[i].uniqueID);
+          a.text(data[i].uniqueID);
+          $("#reservations").append(a);
+        }
+    }
+    else {
+      $("#reservations").text("No tables");
+    }
+  });
+  $.get("/api/waitlist", function(data) {
+    console.log(data);
+    if (data) {
+        for (var i = 0; i < data.length; i++) {
+          var a = $("<div>");
+          a.addClass("uniqueID");
+          a.attr("data-name", data[i].uniqueID);
+          a.text(data[i].uniqueID);
+          $("#waitlist").append(a);
+        }
+    }
+    else {
+      $("#waitlist").text("No tables");
+    }
+  });
+</script>
 </body>
 </html>
 
