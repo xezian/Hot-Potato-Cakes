@@ -57,7 +57,7 @@
             email: $("#email").val().trim(),
             name: $("#name").val().trim(),
             phone: $("#phone").val().trim(),
-            Id: $("#Id").val().trim(),
+            Id: $("#uniqueID").val().trim(),
         };
         // post reservation to api
         $.post("/api/new", newReservation)
