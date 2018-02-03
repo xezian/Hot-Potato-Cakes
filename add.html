@@ -64,7 +64,13 @@
             Id: $("#Id").val().trim(),
         };
         // post reservation to api
-        })
+        $.post("/api/new", newReservation)
+        .then(function(data){
+            console.log(data);
+            alert("Making Reservation");
+        });
+
+        });
     
     
     </script>
