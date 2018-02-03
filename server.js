@@ -1,7 +1,7 @@
 // built in dependencies
 const path = require("path");
-// npm dependencies 
 
+// npm dependencies 
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -29,7 +29,6 @@ let waitlist = [{
     uniqueID: "janjorg"
 }];
 
-
 // Routes
 // =============================================================
 
@@ -53,11 +52,12 @@ app.get("/api/reservations", function(req, res){
 app.get("/api/waitlist", function(req, res){
     res.json(waitlist);
 });
-// Create New Characters - takes in JSON input
+
+// Create Reservation - takes in JSON input
 app.post("/api/new", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
-    var newReservation = req.body;
+    let newReservation = req.body;
     // show in console
     console.log(newReservation);
     // push to the reservations array
@@ -69,14 +69,22 @@ app.post("/api/new", function(req, res) {
     res.json(newReservation);
 });
 
-
-
-
-
-
-
-
-
+// Remove reservation and move next person on waitlist to reservations
+app.post("/api/remove", function(req, res) {
+    let resToRemove = req.body;
+    let id = resToRemove.uniqueID;
+    console.log(resToRemove);
+    console.log(id);
+    for(let i = 0; i < reservations.length; i++){
+        if(reservations[i].uniqueID===id){
+            reservations.slice(i, i + 1);
+            let waitNoMore = waitlist.shift();
+            reservations.push(waitNoMore);
+        }else{
+            console.log("I couldn't find that reservation!");
+        }
+    }
+});
 
 // listener for connection 
 app.listen(PORT, function(){
