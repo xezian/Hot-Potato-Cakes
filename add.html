@@ -11,9 +11,8 @@
     <div class="container">
     <div class="jumbotron jumbotron-fluid col-md-10 float-center text-center">
             <h1 class="display-4">Reserve Your Potato Cake!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <p class="lead">Make a Reservation Now Before They're All Gone!</p>
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="#" role="button">Make Reservatuon</a>
             </p>
@@ -21,33 +20,60 @@
                 </p>
             </div>
             <form>
+            <div class="container">
                 <div class="form-row">
                     <div class="form-group col-md-6 float-left">
                     <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    <input type="email" class="form-control" id="email" placeholder="Email">
                     </div>
                     </div>
                     <div class="form-row">
                     <div class="form-group col-md-6 float-left">
                         <label for="formGroupExampleInput">Name</label>
-                        <input type="text" class="form-control" id="Name" placeholder="John Doe">
+                        <input type="text" class="form-control" id="name" placeholder="John Doe">
                     </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 float-left">
                             <label for="inputPhone">Phone Number</label>
-                            <input type="text" class="form-control" id="inputPhone" placeholder="xxx-xxx-xxxx">
+                            <input type="text" class="form-control" id="phone" placeholder="xxx-xxx-xxxx">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 float-left">
                              <label for="inputId">Unique ID</label>
-                                <input type="text" class="form-control" id="inputId">
+                                <input type="text" class="form-control" id="Id">
+                        </div>
                         </div>
                     </div>  
-                    </div>
+                    </form>
+                    <button class="btn btn-primary" id="submit" type="submit">Submit</button>
                 </div>
-                  </form>
+                  
+    
+    <script type="text/javascript">
+        // adding onClick functionality to retrieve reservation info
+        $("#submit").on("click", function(event) {
+            event.preventDefault();
+
+            //make new reservation
+        var newReservation = {
+            email: $("#email").val().trim(),
+            name: $("#name").val().trim(),
+            phone: $("#phone").val().trim(),
+            Id: $("#Id").val().trim(),
+        };
+        // post reservation to api
+        $.post("/api/new", newReservation)
+        .then(function(data){
+            console.log(data);
+            alert("Making Reservation");
+        });
+
+        });
+    
+    
+    </script>
     
 </body>
 </html>
