@@ -32,13 +32,13 @@
                     <div class="form-row">
                         <div class="col-md-6 float-left">
                             <label for="inputPhone">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" placeholder="xxx-xxx-xxxx">
+                            <input type="text" class="form-control" id="phoneNum" placeholder="xxx-xxx-xxxx">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 float-left">
                              <label for="inputId">Unique ID</label>
-                                <input type="text" class="form-control" id="Id">
+                                <input type="text" class="form-control" id="uniqueId">
                         </div>
                         </div>
                     </div>  
@@ -56,7 +56,7 @@
         var newReservation = {
             email: $("#email").val().trim(),
             name: $("#name").val().trim(),
-            phone: $("#phone").val().trim(),
+            phone: $("#phoneNum").val().trim(),
             Id: $("#uniqueID").val().trim(),
         };
         // post reservation to api
