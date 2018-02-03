@@ -23,6 +23,7 @@
             <h3 class="panel-title"><strong>Current Reservations</strong></h3>
           </div>
           <div class="panel-body">
+            <div id="reservations"></div>
           </div>
 
         </div>
@@ -31,6 +32,7 @@
             <h3 class="panel-title"><strong>Waiting List</strong></h3>
           </div>
           <div class="panel-body">
+            <div id="waitlist"></div>
           </div>
         </div>
 
@@ -38,7 +40,6 @@
   $.get("/api/reservations", function(data) {
     console.log(data);
     if (data) {
-      $("#reservations").empty();
         for (var i = 0; i < data.length; i++) {
           var a = $("<div>");
           a.addClass("uniqueID");
@@ -48,7 +49,22 @@
         }
     }
     else {
-      $("#reservations").text("BLahblah");
+      $("#reservations").text("No tables");
+    }
+  });
+  $.get("/api/waitlist", function(data) {
+    console.log(data);
+    if (data) {
+        for (var i = 0; i < data.length; i++) {
+          var a = $("<div>");
+          a.addClass("uniqueID");
+          a.attr("data-name", data[i].uniqueID);
+          a.text(data[i].uniqueID);
+          $("#waitlist").append(a);
+        }
+    }
+    else {
+      $("#waitlist").text("No tables");
     }
   });
 </script>
