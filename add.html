@@ -56,8 +56,8 @@
         var newReservation = {
             email: $("#email").val().trim(),
             name: $("#name").val().trim(),
-            phone: $("#phoneNum").val().trim(),
-            Id: $("#uniqueID").val().trim(),
+            phoneNum: $("#phoneNum").val().trim(),
+            uniqueID: $("#uniqueID").val().trim(),
         };
         // post reservation to api
         $.post("/api/new", newReservation)
